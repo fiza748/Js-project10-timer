@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes Slider</title>
+</head>
+<style>
+     * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    
+    }
+
+    html, body {
+      height: 100%;
+      font-family: Arial, sans-serif;
+      font-size: larger;
+      font-weight: 900;
+    }
+.div1{
+    height: 100vh;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+     background: linear-gradient(to left top ,black,rgb(49, 49, 49),#808080,black,rgb(51, 51, 51),black); 
+ 
+   
+}
+.div2{
+    height: 100vh;
+    width: 900px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     flex-direction: column;
+     
+    
+}
+#qoutebox{
+    object-fit: cover;
+    object-position: center;
+  background-size: cover;
+  background-position: center;
+  box-shadow: rgb(0, 0, 0) 70px;
+  border-radius: 5px;
+ 
+  height: 80%;
+  
+}
+#buttons{
+    width: 98%;
+    display: flex;
+    justify-content: space-between;
+}
+#prev,#next{
+    font-weight: 800;
+    border: white;
+    color:white;
+    background-color: rgb(84, 84, 84);
+}
+
+
+#buttons button:hover {
+    background-color: #ddd;
+}
+
+#buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    border-radius: 5px;
+    font-weight: 700;
+    font-size: large;
+    
+}
+
+
+</style>
+<body>
+    <div class="div1" id="quoteContainer" >
+        <div class="div2" id="qoutebox">
+            <h1 id="name"></h1>
+            <br>
+            <br>
+            <h3 id="aouther"></h3>
+            <br>
+            <br>
+            <br>
+            <div id="buttons">
+              <button onclick="prev()" title="To read previous qoutes">< </button>
+        <button onclick="next()" title="To read next qoutes"> ></button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+
+        let currentindex=0;
+
+        let qoutes=[
+
+            {
+                name:"“Happiness is when what you think, what you say, and what you do are in harmony.”",
+                aouther:"— Mahatma Gandhi",
+                bg:"imgs/1.jpg",
+
+            },
+
+
+             {
+                name:"“The two enemies of human happiness are pain and boredom.”",
+                aouther:"— Arthur Schopenhauer",
+                bg:"imgs/2.jpg",
+
+            },
+
+             {
+                name:"“Happy people plan actions, they don’t plan results.”",
+                aouther:"— Dennis Waitley",
+                bg:"imgs/3.jpg",
+
+            },
+
+             {
+                name:"“What you do not want done to yourself, do not do to others.”",
+                aouther:"— Confucius",
+                bg:"imgs/4.jpg",
+
+            },
+
+             {
+                name:"“The only joy in the world is to begin.”",
+                aouther:"— Cesare Pavese",
+                bg:"imgs/5.jpg",
+
+            },
+        ];
+        
+
+        
+        function showqoutes(index){
+            let qoute=qoutes[index];
+            document.getElementById("name").innerHTML=`${qoute.name}`;
+            document.getElementById("aouther").innerHTML=`${qoute.aouther}`;
+          document.getElementById("qoutebox").style.backgroundImage = `url('${qoute.bg}')`;
+        }
+
+        function prev(){
+            for(let i=0;i<=qoutes.length;i++){
+                if(i === currentindex){
+                    currentindex=(i - 1 + qoutes.length) % qoutes.length;
+                    break;
+                }
+            }
+            showqoutes(currentindex);
+        }
+
+         function next(){
+            for(let i=0;i<=qoutes.length;i++){
+                if(i === currentindex){
+                    currentindex=(i + 1) % qoutes.length;
+                    break;
+                }
+            }
+            showqoutes(currentindex);
+            
+        }
+
+        showqoutes(currentindex);
+
+        setInterval(function(){
+            next();
+        },5000);
+        
+
+
+    </script>
+</body>
+</html>
